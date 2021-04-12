@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">Initial Demo - Seminar</string>
+    <string name="app_name">Seminar Demo</string>
+    <string name="content_description">TODO</string>
+    <string name="todo">TODO</string>
+
+    <string name="title_crypto">Cryptography</string>
+    <string name="title_safety_net">SafetyNet API</string>
+    <string name="title_security_data">Security with data</string>
+    <string name="title_security_https_ssl">Security with HTTPS and SSL</string>
+    <string name="title_keystore">Keystore System</string>
+
+    <string name="title_cipher">Cipher Class</string>
+    <string name="et_cipher_message_hint">Write any message here</string>
+    <string name="btn_decode">Decode</string>
+    <string name="btn_encode">Encode</string>
+
+    <string name="et_label_key">Key</string>
+    <string name="et_label_encrypt_msg">Encrypt Message</string>
+    <string name="et_label_decrypt_msg">Decrypt Message</string>
+    
+    <string name="title_msg_digest">Message Digest Class</string>
+
+
 </resources>
