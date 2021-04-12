@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InitialDemoSeminar">
+        <activity android:name=".AndroidKeyStoreDemo"></activity>
+        <activity android:name=".EncryptedSharedPreferencesDemo" />
+        <activity android:name=".EncryptedFileDemo" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

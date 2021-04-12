@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Initial Demo - Seminar</string>
+    <string name="key_alias">Key Alias</string>
+    <string name="generate_key">Generate key</string>
+    <string name="key_information">Key information</string>
+    <string name="clear_text">Clear text</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="encrypt_text">Encrypt Text</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="decrypt_text">Decrypt Text</string>
+    <string name="get_aliases">Get Aliases</string>
 </resources>
