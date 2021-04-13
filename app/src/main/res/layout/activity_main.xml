@@ -35,7 +35,8 @@
                         android:layout_height="194dp"
                         android:contentDescription="@string/content_description"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
+                        app:srcCompat="@drawable/cryptography"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -92,7 +93,8 @@
                         android:layout_height="194dp"
                         android:contentDescription="@string/content_description"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
+                        app:srcCompat="@drawable/safetynet"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -146,7 +148,8 @@
                         android:layout_height="194dp"
                         android:contentDescription="@string/content_description"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -200,7 +203,8 @@
                         android:layout_height="194dp"
                         android:contentDescription="@string/content_description"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -254,7 +258,8 @@
                         android:layout_height="194dp"
                         android:contentDescription="@string/content_description"
                         android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_launcher_background" />
+                        app:srcCompat="@drawable/ic_launcher_background"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

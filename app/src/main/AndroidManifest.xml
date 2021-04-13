@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InitialDemoSeminar">
-        <activity android:name=".CryptographyActivity"></activity>
+        <activity android:name=".SafetynetAPIActivity"></activity>
+        <activity android:name=".CryptographyActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,7 +1,9 @@
 package com.example.initialdemo_seminar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -11,9 +13,18 @@ import android.widget.Button;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.SecureRandom;
+import java.security.Signature;
+import java.security.SignatureException;
+import java.security.cert.Certificate;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -28,6 +39,8 @@ public class CryptographyActivity extends AppCompatActivity {
     private static SecretKey key = null;
     private TextInputEditText textViewCipherKey;
     private byte[] msg;
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,8 +144,79 @@ public class CryptographyActivity extends AppCompatActivity {
     //#endregion
 
     //#region Signature Demo
-    private void SignatureDemo(){
+    private static PrivateKey privateKey;
+    private static PublicKey publicKey;
+    private byte[] message = new byte[] {'h','i'};
+    private static byte[] signature = null;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
+    private void SignatureDemo(){
+        TextInputEditText editTextSignatureMessage = findViewById(R.id.et_signature_message);
+        TextInputEditText textViewSignatureMessage = findViewById(R.id.tv_signature_msg);
+        TextInputEditText editTextSignatureSign = findViewById(R.id.tv_signature_sign);
+        TextInputEditText textViewSignatureVerifyResult = findViewById(R.id.tv_verify_result);
+
+        Button buttonSign = findViewById(R.id.btn_sign);
+        buttonSign.setOnClickListener(v -> {
+            if(!editTextSignatureMessage.getText().toString().isEmpty()){
+                GeneratePairKeys();
+                //byte[] messageBytes = editTextSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
+                byte [] messageBytes = message;
+                try {
+                    Signature s = Signature.getInstance("SHA1withRSA");
+                    s.initSign(privateKey);
+                    s.update(messageBytes);
+                    Log.e("Nothing", Base64.encodeToString(s.sign(), Base64.DEFAULT));
+                    signature = s.sign();
+                    editTextSignatureSign.setText(new String(signature));
+                    //textViewSignatureMessage.setText(new String(messageBytes));
+
+                } catch (Exception ignore) {
+                    ignore.printStackTrace();
+                }
+            }
+        });
+
+        Button buttonVerify = findViewById(R.id.btn_verify);
+        buttonVerify.setOnClickListener(v -> {
+            if(!editTextSignatureSign.getText().toString().isEmpty()){
+                //byte[] messageBytes = editTextSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
+                //byte[] signature = editTextSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
+                byte [] messageBytes = message;
+                try {
+                    Signature s = Signature.getInstance("SHA1withRSA");
+                    s.initVerify(publicKey);
+                    s.update(messageBytes);
+                    if (s.verify(signature)) {
+                        textViewSignatureVerifyResult.setText("Verify successful");
+                    } else {
+                        textViewSignatureVerifyResult.setText("Verify failed");
+                    }
+                    Log.d("Nothing", new String(messageBytes));
+                } catch (Exception ignore) {
+                    ignore.printStackTrace();
+                }
+            }
+        });
+
+    }
+    public void GeneratePairKeys() {
+        SecureRandom random = null;
+        try {
+            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+            random = SecureRandom.getInstance("SHA1PRNG");
+            keyGen.initialize(1024, random);
+
+            KeyPair pair = keyGen.generateKeyPair();
+
+            privateKey = pair.getPrivate();
+            publicKey = pair.getPublic();
+            Log.d("Nothing", "Private key: " + new String(privateKey.getEncoded()));
+            Log.d("Nothing", "Public key: " + new String(publicKey.getEncoded()));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
     //#endregion
 

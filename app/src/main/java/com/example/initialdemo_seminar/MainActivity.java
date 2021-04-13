@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(cryptoIntent);
     }
     public void OnClickSafetyNet(View view){
-
+        Intent safetyNetIntent = new Intent(this, SafetynetAPIActivity.class);
+        startActivity(safetyNetIntent);
     }
     public void OnClickSecurityData(View view){
 
