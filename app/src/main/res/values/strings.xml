@@ -28,19 +28,24 @@
     <string name="btn_sign">Sign</string>
 
     <string name="title_attestation_API">Attestation API</string>
+    <string name="tv_label_attestation_result_code">Json Web Signature</string>
+    <string name="tv_label_attestation_result">Response result</string>
     <string name="btn_request">Request</string>
+
     <string name="title_safe_browsing_API">Safe Browsing API</string>
+    <string name="tv_label_safe_browsing_result">Response result</string>
+    <string name="et_safe_browsing_message_hint">Write any Url here</string>
+
     <string name="title_recaptcha_API">reCAPTCHA API</string>
     <string name="title_verify_app_API">Verify Apps API</string>
-
     <string name="key_alias">Key Alias</string>
     <string name="generate_key">Generate key</string>
     <string name="key_information">Key information</string>
     <string name="clear_text">Clear text</string>
     <string name="encrypt">Encrypt</string>
     <string name="encrypt_text">Encrypt Text</string>
-    <string name="decrypt">Decrypt</string>
     <string name="decrypt_text">Decrypt Text</string>
+    <string name="decrypt">Decrypt</string>
     <string name="get_aliases">Get Aliases</string>
     <string name="file_s_name">"File's name"</string>
     <string name="file_s_content">"File's content"</string>
@@ -58,4 +63,5 @@
     <string name="encrypted_pairs">Encrypted pairs</string>
     <string name="decrypted_pairs">Decrypted pairs</string>
     <string name="get_readable_pairs">Get readable pairs</string>
+    <string name="tv_recaptcha_token">Token</string>
 </resources>
