@@ -11,6 +11,9 @@
         android:theme="@style/Theme.InitialDemoSeminar">
         <activity android:name=".SafetynetAPIActivity"></activity>
         <activity android:name=".CryptographyActivity" />
+        <activity android:name=".AndroidKeyStoreDemo"></activity>
+        <activity android:name=".EncryptedSharedPreferencesDemo" />
+        <activity android:name=".EncryptedFileDemo" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

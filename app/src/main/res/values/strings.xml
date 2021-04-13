@@ -26,10 +26,20 @@
     <string name="et_label_verify_result">Verify Result</string>
     <string name="btn_verify">Verify</string>
     <string name="btn_sign">Sign</string>
-    
+
     <string name="title_attestation_API">Attestation API</string>
     <string name="btn_request">Request</string>
     <string name="title_safe_browsing_API">Safe Browsing API</string>
     <string name="title_recaptcha_API">reCAPTCHA API</string>
     <string name="title_verify_app_API">Verify Apps API</string>
+
+    <string name="key_alias">Key Alias</string>
+    <string name="generate_key">Generate key</string>
+    <string name="key_information">Key information</string>
+    <string name="clear_text">Clear text</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="encrypt_text">Encrypt Text</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="decrypt_text">Decrypt Text</string>
+    <string name="get_aliases">Get Aliases</string>
 </resources>
