@@ -58,7 +58,9 @@ public class EncryptedSharedPreferencesDemo extends AppCompatActivity {
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
             encryptedEditor = encryptedPref.edit();
         } catch (GeneralSecurityException | IOException e) {
-            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+
         }
 
         findViewById(R.id.buttonAdd).setOnClickListener(v -> {
@@ -85,9 +87,8 @@ public class EncryptedSharedPreferencesDemo extends AppCompatActivity {
 
             encryptedEditor.apply();
 
-            Toast toast = new Toast(getApplicationContext());
-            toast.setText("Data added");
-            toast.show();
+            Toast.makeText(getApplicationContext(), "Data added",
+                    Toast.LENGTH_LONG).show();
         });
 
         findViewById(R.id.buttonGetReadable).setOnClickListener(v -> {

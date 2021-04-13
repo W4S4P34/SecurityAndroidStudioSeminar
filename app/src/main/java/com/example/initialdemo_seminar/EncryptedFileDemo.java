@@ -2,8 +2,6 @@ package com.example.initialdemo_seminar;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +19,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
-import java.util.Arrays;
 
 public class EncryptedFileDemo extends AppCompatActivity {
     Context context;
@@ -59,10 +56,8 @@ public class EncryptedFileDemo extends AppCompatActivity {
 
             textEncryptData.setText("");
             textDecryptData.setText("");
-
-            Toast toast = new Toast(getApplicationContext());
-            toast.setText("File is saved");
-            toast.show();
+            Toast.makeText(getApplicationContext(), "File is saved",
+                    Toast.LENGTH_LONG).show();
         });
 
         findViewById(R.id.buttonReadFileNormal).setOnClickListener(v -> {
@@ -96,9 +91,8 @@ public class EncryptedFileDemo extends AppCompatActivity {
             }
             br.close();
         } catch (IOException e) {
-            Toast toast = new Toast(getApplicationContext());
-            toast.setText(e.getMessage());
-            toast.show();
+            Toast.makeText(getApplicationContext(), e.getMessage(),
+                    Toast.LENGTH_LONG).show();
         }
 
         textEncryptData.setText(text);
@@ -128,9 +122,8 @@ public class EncryptedFileDemo extends AppCompatActivity {
             byteArrayOutputStream.close();
             inputStream.close();
         } catch (GeneralSecurityException | IOException e) {
-            Toast toast = new Toast(getApplicationContext());
-            toast.setText(e.getMessage());
-            toast.show();
+            Toast.makeText(getApplicationContext(), e.getMessage(),
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -148,9 +141,8 @@ public class EncryptedFileDemo extends AppCompatActivity {
             outputStream.flush();
             outputStream.close();
         } catch (GeneralSecurityException | IOException e) {
-            Toast toast = new Toast(getApplicationContext());
-            toast.setText(e.getMessage());
-            toast.show();
+            Toast.makeText(getApplicationContext(), e.getMessage(),
+                    Toast.LENGTH_LONG).show();
         }
     }
 }
