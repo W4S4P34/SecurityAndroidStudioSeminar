@@ -42,4 +42,20 @@
     <string name="decrypt">Decrypt</string>
     <string name="decrypt_text">Decrypt Text</string>
     <string name="get_aliases">Get Aliases</string>
+    <string name="file_s_name">"File's name"</string>
+    <string name="file_s_content">"File's content"</string>
+    <string name="write_file">Write file</string>
+    <string name="encrypted_data_in_file">Encrypted data in file</string>
+    <string name="read_file_normal">Read using normal File</string>
+    <string name="read_file_encrypted">Read using EncryptedFile</string>
+    <string name="decrypted_data_in_file">Decrypted data in file</string>
+    <string name="key">Key</string>
+    <string name="value">Value</string>
+    <string name="add">Add to normal storage</string>
+    <string name="pairs_added">Pairs added</string>
+    <string name="add_to_encrypted_storage">Add to encrypted storage</string>
+    <string name="key_to_encrypt">Key to encrypt</string>
+    <string name="encrypted_pairs">Encrypted pairs</string>
+    <string name="decrypted_pairs">Decrypted pairs</string>
+    <string name="get_readable_pairs">Get readable pairs</string>
 </resources>
