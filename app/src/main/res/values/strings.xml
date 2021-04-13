@@ -5,8 +5,8 @@
 
     <string name="title_crypto">Cryptography</string>
     <string name="title_safety_net">SafetyNet API</string>
-    <string name="title_security_data">Security with data</string>
-    <string name="title_security_https_ssl">Security with HTTPS and SSL</string>
+    <string name="title_encrypted_file">EncryptedFile</string>
+    <string name="title_encrypted_sp">EncryptedSharePreferences</string>
     <string name="title_keystore">Keystore System</string>
 
     <string name="title_cipher">Cipher Class</string>

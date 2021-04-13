@@ -23,14 +23,17 @@ public class MainActivity extends AppCompatActivity {
         Intent safetyNetIntent = new Intent(this, SafetynetAPIActivity.class);
         startActivity(safetyNetIntent);
     }
-    public void OnClickSecurityData(View view){
-
+    public void OnClickEncryptedFile(View view){
+        Intent encryptedFileIntent = new Intent(this, EncryptedFileDemo.class);
+        startActivity(encryptedFileIntent);
     }
-    public void OnClickSecurityHttpsSsl(View view){
-
+    public void OnClickEncryptedSP(View view){
+        Intent encryptedSPIntent = new Intent(this, EncryptedSharedPreferencesDemo.class);
+        startActivity(encryptedSPIntent);
     }
     public void OnClickKeystore(View view){
-
+        Intent keystoreIntent = new Intent(this, AndroidKeyStoreDemo.class);
+        startActivity(keystoreIntent);
     }
     //#endregion
 }
