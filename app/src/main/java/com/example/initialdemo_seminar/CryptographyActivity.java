@@ -190,10 +190,9 @@ public class CryptographyActivity extends AppCompatActivity {
         Button buttonVerify = findViewById(R.id.btn_verify);
         buttonVerify.setOnClickListener(v -> {
             if(!editTextSignatureSign.getText().toString().isEmpty()){
-                byte[] messageBytes = textViewSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
-                byte[] signature = DecoderFun(editTextSignatureSign.getText().toString());
-                //byte [] messageBytes = message;
                 try {
+                    byte[] messageBytes = textViewSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
+                    byte[] signature = DecoderFun(editTextSignatureSign.getText().toString());
                     Signature s = Signature.getInstance("SHA1withRSA");
                     s.initVerify(publicKey);
                     s.update(messageBytes);
@@ -205,7 +204,7 @@ public class CryptographyActivity extends AppCompatActivity {
 
                     Log.d("Nothing", new String(messageBytes));
                 } catch (Exception ignore) {
-                    ignore.printStackTrace();
+                    textViewSignatureVerifyResult.setText("Verify failed");
                 }
             }
         });
