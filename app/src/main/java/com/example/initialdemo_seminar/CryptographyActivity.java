@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.nio.charset.StandardCharsets;
@@ -39,13 +40,14 @@ public class CryptographyActivity extends AppCompatActivity {
     private static SecretKey key = null;
     private TextInputEditText textViewCipherKey;
     private byte[] msg;
+    private MaterialAlertDialogBuilder materialAlertDialogBuilder;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cryptography);
-
+        materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
         CipherDemo();
         MessageDigestDemo();
         SignatureDemo();
@@ -58,6 +60,7 @@ public class CryptographyActivity extends AppCompatActivity {
         TextInputEditText textViewCipherDecryptMessage = findViewById(R.id.tv_cipher_decrypt_message);
         textViewCipherKey = findViewById(R.id.tv_cipher_key);
 
+
         MaterialButton buttonDecode = findViewById(R.id.btn_decode);
         buttonDecode.setOnClickListener(v -> {
             String msg = textViewCipherEncryptMessage.getText().toString();
@@ -68,6 +71,10 @@ public class CryptographyActivity extends AppCompatActivity {
                     textViewCipherDecryptMessage.setText(cipherEncodeText);
                     textViewCipherEncryptMessage.setText("");
                 }catch (Exception ignore){
+                    materialAlertDialogBuilder.setTitle("Error Message");
+                    materialAlertDialogBuilder.setMessage(ignore.getMessage());
+                    materialAlertDialogBuilder.setCancelable(true);
+                    materialAlertDialogBuilder.show();
                     Log.d("Nothing", ignore.getMessage());
                 }
             }
@@ -94,15 +101,15 @@ public class CryptographyActivity extends AppCompatActivity {
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, keySpec);
         msg = cipher.doFinal(plaintext);
-        for (byte b : msg ) {
-            Log.d("Nothing", String.valueOf(b));
-        }
         Log.d("Nothing","Encrypt message: " + EncoderFun(msg));
         Log.d("Nothing", "Encrypt message: " + msg);
         return new String(msg);
     }
     private String Decrypt(byte[] cipherText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        SecretKeySpec keySpec = new SecretKeySpec(key.getEncoded(), "AES");
+        if(textViewCipherKey.getText().toString().isEmpty())
+            return null;
+        byte[] keyBytes = DecoderFun(textViewCipherKey.getText().toString());
+        SecretKeySpec keySpec = new SecretKeySpec(keyBytes, "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, keySpec);
         byte[] decrypted = cipher.doFinal(cipherText);
@@ -115,10 +122,11 @@ public class CryptographyActivity extends AppCompatActivity {
             keyGenerator.init(256);
             key = keyGenerator.generateKey();
             Log.d("Nothing", "Key: " + key.getEncoded());
-            textViewCipherKey.setText(new String(key.getEncoded()));
+            textViewCipherKey.setText(EncoderFun(key.getEncoded()));
         }catch (Exception ignore){}
     }
     //#endregion
+
 
     //#region Message Digest Demo
     private void MessageDigestDemo() {
@@ -147,7 +155,6 @@ public class CryptographyActivity extends AppCompatActivity {
     private static PrivateKey privateKey;
     private static PublicKey publicKey;
     private byte[] message = new byte[] {'h','i'};
-    private static byte[] signature = null;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 
@@ -161,16 +168,18 @@ public class CryptographyActivity extends AppCompatActivity {
         buttonSign.setOnClickListener(v -> {
             if(!editTextSignatureMessage.getText().toString().isEmpty()){
                 GeneratePairKeys();
-                //byte[] messageBytes = editTextSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
-                byte [] messageBytes = message;
+                byte[] messageBytes = editTextSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
+                //byte [] messageBytes = message;
                 try {
                     Signature s = Signature.getInstance("SHA1withRSA");
                     s.initSign(privateKey);
                     s.update(messageBytes);
-                    Log.e("Nothing", Base64.encodeToString(s.sign(), Base64.DEFAULT));
-                    signature = s.sign();
-                    editTextSignatureSign.setText(new String(signature));
-                    //textViewSignatureMessage.setText(new String(messageBytes));
+                    //Log.e("Nothing", Base64.encodeToString(s.sign(), Base64.DEFAULT));
+                    byte[] signature = s.sign();
+                    editTextSignatureSign.setText(EncoderFun(signature));
+                    editTextSignatureMessage.setText("");
+                    textViewSignatureVerifyResult.setText("");
+                    textViewSignatureMessage.setText(new String(messageBytes));
 
                 } catch (Exception ignore) {
                     ignore.printStackTrace();
@@ -181,9 +190,9 @@ public class CryptographyActivity extends AppCompatActivity {
         Button buttonVerify = findViewById(R.id.btn_verify);
         buttonVerify.setOnClickListener(v -> {
             if(!editTextSignatureSign.getText().toString().isEmpty()){
-                //byte[] messageBytes = editTextSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
-                //byte[] signature = editTextSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
-                byte [] messageBytes = message;
+                byte[] messageBytes = textViewSignatureMessage.getText().toString().getBytes(StandardCharsets.UTF_8);
+                byte[] signature = DecoderFun(editTextSignatureSign.getText().toString());
+                //byte [] messageBytes = message;
                 try {
                     Signature s = Signature.getInstance("SHA1withRSA");
                     s.initVerify(publicKey);
@@ -193,6 +202,7 @@ public class CryptographyActivity extends AppCompatActivity {
                     } else {
                         textViewSignatureVerifyResult.setText("Verify failed");
                     }
+
                     Log.d("Nothing", new String(messageBytes));
                 } catch (Exception ignore) {
                     ignore.printStackTrace();
@@ -229,6 +239,5 @@ public class CryptographyActivity extends AppCompatActivity {
         String conVal= Base64.encodeToString(decodeValue,Base64.DEFAULT);
         return conVal;
     }
-
 
 }

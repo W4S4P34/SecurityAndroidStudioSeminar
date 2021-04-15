@@ -22,7 +22,7 @@
 
     <string name="title_signature">Signature Class</string>
     <string name="et_label_signature_sign">Sign</string>
-    <string name="tv_label_signature_msg">Encrypt Message</string>
+    <string name="tv_label_signature_msg">Sign Message</string>
     <string name="et_label_verify_result">Verify Result</string>
     <string name="btn_verify">Verify</string>
     <string name="btn_sign">Sign</string>
